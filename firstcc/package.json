@@ -1,0 +1,11 @@
+{
+  "name": "bilingual-interpretation-trainer",
+  "version": "1.0.0",
+  "description": "Chinese-English dialogue interpretation training with real-time speech scoring",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "generate-corpus": "node scripts/generate-corpus.js",
+    "deploy": "vercel deploy --prod"
+  }
+}

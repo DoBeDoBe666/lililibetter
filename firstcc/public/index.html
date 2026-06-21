@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="中外对话口译训练 — 8200+语料、实时录音评分" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>中外对话口译训练</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>中外对话 · 口译训练</h1>
+        <p>外国人 ↔ 中国人 交替传译 · 实时评分 · 8200+ 训练语句</p>
+      </header>
+
+      <p class="support-note" id="supportNote">正在加载训练语料库…</p>
+
+      <section class="card">
+        <h2>🎯 训练目标</h2>
+        <div class="goals-grid" id="goalsGrid"></div>
+        <button class="btn btn-primary" id="btnGoTrain" style="margin-top: 14px">开始训练</button>
+      </section>
+
+      <section class="card">
+        <h2>📋 对话口译流程</h2>
+        <div class="step-bar">
+          <div class="step">1 选场景</div>
+          <div class="step">2 听发言</div>
+          <div class="step">3 交替口译</div>
+          <div class="step">4 评分下一句</div>
+        </div>
+        <p class="muted">
+          随机或按主题选择对话 → 外国人/中国人交替发言 → 播放源语后口译 → 实时评分 → 查看参考译文 → 进入下一轮对话
+        </p>
+      </section>
+
+      <section class="card" id="trainingSection">
+        <h2>🎧 对话训练区</h2>
+        <div class="controls" style="margin-bottom: 12px">
+          <select id="categoryFilter" aria-label="主题分类"></select>
+          <select id="levelFilter" aria-label="难度"></select>
+          <button class="btn btn-secondary" id="btnRandom">🎲 随机主题对话</button>
+        </div>
+        <p class="corpus-info muted" id="corpusInfo"></p>
+
+        <div class="dialogue-context" id="dialogueContext">
+          <div class="context-title" id="scenarioTitle">—</div>
+          <div class="context-meta" id="turnMeta">—</div>
+        </div>
+
+        <div class="dialogue-history" id="dialogueHistory"></div>
+
+        <div class="current-turn">
+          <div class="speaker-row">
+            <span class="speaker-badge" id="speakerBadge">—</span>
+            <span class="badge" id="directionBadge">—</span>
+            <span class="badge" id="categoryBadge">—</span>
+            <span class="badge" id="levelBadge">—</span>
+          </div>
+
+          <div class="source-header">
+            <p class="label">当前发言（源语）</p>
+            <button class="btn btn-toggle" id="btnToggleText" type="button" aria-pressed="true">👁 隐藏文本</button>
+          </div>
+          <div class="source-box" id="sourceText"></div>
+        </div>
+
+        <div class="controls" style="margin-top: 14px">
+          <button class="btn btn-primary" id="btnPlay">🔊 播放发言</button>
+          <button class="btn btn-secondary" id="btnStopPlay">停止播放</button>
+        </div>
+
+        <div class="record-zone">
+          <div class="record-header">
+            <span class="label">您的口译（实时识别）</span>
+            <span class="timer" id="recTimer">00:00</span>
+          </div>
+          <canvas id="waveCanvas" width="320" height="48" aria-hidden="true"></canvas>
+          <div class="transcript-box" id="liveTranscript">（等待录音…）</div>
+          <div class="live-scores" id="liveScores"></div>
+          <div class="controls">
+            <button class="btn btn-record" id="btnRecord">开始录音</button>
+            <button class="btn btn-primary" id="btnFinish">完成本句并评分</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card feedback-panel hidden" id="feedbackPanel">
+        <h2>🤖 本句评分与参考译文</h2>
+        <div id="feedbackContent"></div>
+        <div class="controls" style="margin-top: 16px">
+          <button class="btn btn-primary" id="btnNextTurn">下一句对话 →</button>
+          <button class="btn btn-secondary" id="btnNewDialogue">新对话（随机）</button>
+          <button class="btn btn-secondary" id="btnRepeat">重练本句</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>📊 训练记录</h2>
+        <div id="historyList"></div>
+        <button class="btn btn-secondary" style="margin-top: 12px" id="btnClearHistory">清空记录</button>
+      </section>
+
+      <footer>中外对话口译训练器 · 语料 8200+ 条 · 手机/电脑可用 · 建议使用 Chrome / Edge</footer>
+    </div>
+
+    <script src="js/passages.js"></script>
+    <script src="js/evaluator.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
